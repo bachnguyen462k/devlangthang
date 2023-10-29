@@ -14,7 +14,7 @@ import { CoreModule } from './core/core.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { SearchModule } from './search/search.module';
-
+import { RoadMapModule } from './roadmap/roadmap.module';
 @NgModule({
   declarations: [AppComponent, FooterComponent, HeaderComponent],
   imports: [
@@ -24,6 +24,7 @@ import { SearchModule } from './search/search.module';
     HomeModule,
     AuthModule,
     SearchModule,
+    RoadMapModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],

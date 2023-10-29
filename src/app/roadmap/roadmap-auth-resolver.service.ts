@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class SearchAuthResolver implements Resolve<boolean> {
+export class RoadMapAuthResolver implements Resolve<boolean> {
   constructor(
     private articlesService: ArticlesService,
     private router: Router,

@@ -10,6 +10,7 @@ import { ListErrorsComponent } from './list-errors.component';
 import { ShowAuthedDirective } from './show-authed.directive';
 import { LoadingComponent } from './loading/loading.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { RoadmapListComponent } from './roadmap-helpers';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     ListErrorsComponent,
     ShowAuthedDirective,
     LoadingComponent,
-    SidebarComponent
+    SidebarComponent,
+    RoadmapListComponent
   ],
   exports: [
     ArticleListComponent,

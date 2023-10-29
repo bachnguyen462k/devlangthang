@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SearchComponent } from './search.component';
-import { SearchAuthResolver } from './search-auth-resolver.service';
+import { RoadMapComponent } from './roadmap.component';
+import { RoadMapAuthResolver } from './roadmap-auth-resolver.service';
 
 
 const routes: Routes = [
   {
-    path: 'search/:slug',
-    component: SearchComponent,
+    path: 'roadmap',
+    component: RoadMapComponent,
     resolve: {
-      article: SearchAuthResolver
+      article: RoadMapAuthResolver
     }
   }
 ];

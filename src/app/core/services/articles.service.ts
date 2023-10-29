@@ -82,5 +82,17 @@ export class ArticlesService {
       new HttpParams({ fromObject: params })
     );
   }
+  // getSearch(slug): Observable<Article> {
+  //   return this.apiService.get('/search/' + slug)
+  //     .pipe(map(data => data.article));
+  // }
 
+
+  getSearch(slug): Observable<{articles: Article[]}> {
+    // Convert any filters over to Angular's URLSearchParams
+    return this.apiService
+    .get(
+      '/articles/search/' +slug
+    );
+  }
 }

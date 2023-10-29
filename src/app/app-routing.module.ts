@@ -17,13 +17,19 @@ const routes: Routes = [
     loadChildren: () => import('./editor/editor.module').then(m => m.EditorModule)
   },
   {
-    path: '',
-    loadChildren: () => import('./article/article.module').then(m => m.ArticleModule)
+    path: 'roadmap',
+    loadChildren: () => import('./roadmap/roadmap.module').then(m => m.RoadMapModule)
   },
   {
     path: 'search',
     loadChildren: () => import('./search/search.module').then(m => m.SearchModule)
-  }
+  },
+ 
+  {
+    path: '',
+    loadChildren: () => import('./article/article.module').then(m => m.ArticleModule)
+  },
+  
 ];
 
 @NgModule({

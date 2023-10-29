@@ -33,10 +33,6 @@ export class SidebarComponent implements OnInit {
       this.tags2 = tags.slice(4); // Lấy những phần tử còn lại
       this.count = this.tags2.length.toString(); // Số phần tử của tag2
     });
-
-    console.log(this.mucluc);
-    
-   
   }
 
 }

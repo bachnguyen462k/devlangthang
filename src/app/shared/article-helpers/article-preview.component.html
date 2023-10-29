@@ -12,7 +12,7 @@
         lazied=""
       />
     </a>
-    <app-favorite-button
+    <app-favorite-button *ngIf="article.view"
       [article]="article"
       (toggle)="onToggleFavorite($event)"
       class="pull-xs-right"
