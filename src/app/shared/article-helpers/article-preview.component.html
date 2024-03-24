@@ -1,59 +1,85 @@
-<article class="ntry pTag noAd">
-  <div class="pThmb">
-    <a
-      [routerLink]="['/', article?.slug]"
-      class="thmb"
-      title="{{ article.title }}"
-    >
-      <img
-        alt="Image - Default"
-        class="imgThm lazy loaded"
-        [src]="article.imageUrl"
-        lazied=""
-      />
+<!--begin::Question-->
+<div class="mb-0">
+  <!--begin::Head-->
+  <div class="d-flex align-items-center mb-4">
+    <!--begin::Title-->
+    <a [routerLink]="['/', article?.slug]" class="fs-2 fw-bold text-gray-900 text-hover-primary me-1"
+      title="{{ article.title }}">
+      {{ article.title }}
     </a>
-    <app-favorite-button *ngIf="article.view"
-      [article]="article"
-      (toggle)="onToggleFavorite($event)"
-      class="pull-xs-right"
-    >
-      {{ article.favoritesCount }}
-    </app-favorite-button>
-  </div>
-  <div class="pCntn">
-    <div class="pHdr pSml">
-      <div class="pLbls">
-        <a
-          *ngFor="let tag of article.tagList; trackBy: trackByFn"
-          [routerLink]="['/', article?.slug]"
-          rel="tag"
-          title="{{ tag }}"
-        >
-          {{ tag }}
-        </a>
-      </div>
-    </div>
-    <h2 class="pTtl aTtl sml nSpr">
-      <a
-        [routerLink]="['/', article?.slug]"
-        class="preview-link"
-        rel="bookmark"
-      >
-        {{ article.title }}
-      </a>
-    </h2>
-    <div class="pSnpt">
-      {{ article.description }}
-      &#8230;
-    </div>
+    <!--end::Title-->
 
-    <div class="pSnpt">
-      <time
-        class="aTtmp pTtmp pbl"
-        [attr.data-text]="article.createdAt"
-        [attr.datetime]="article.createdAt"
-        [attr.title]="'Published: ' + article.createdAt"
-      ></time>
+    <!--begin::Icons-->
+    <div class="d-flex align-items-center">
+      <span class="ms-1" data-bs-toggle="tooltip" title="Cảnh báo" *ngIf="article.status === 'Warning'">
+        <i class="ki-duotone ki-information-5 text-primary fs-1"><span class="path1"></span><span
+            class="path2"></span><span class="path3"></span></i>
+      </span>
+      <!-- <span class="ms-1" data-bs-toggle="tooltip" title="User replied">
+        <i class="ki-duotone ki-sms text-danger fs-1"><span class="path1"></span><span class="path2"></span></i>
+      </span>  -->
+      <span class="ms-1" data-bs-toggle="tooltip" title="Hoàn thành" *ngIf="article.status === 'Successful'">
+        <i class="ki-duotone ki-check-circle text-success fs-1"><span class="path1"></span><span class="path2"></span></i>
+      </span>
     </div>
+    <!--end::Icons-->
   </div>
-</article>
+  <!--end::Head-->
+
+  <!--begin::Summary-->
+  <div class="fs-base fw-normal text-gray-700 mb-4">
+    {{ article.description }} </div>
+  <!--end::Summary-->
+
+  <!--begin::Foot-->
+  <div class="d-flex flex-stack flex-wrap">
+    <!--begin::Author-->
+    <div class="d-flex align-items-center py-1">
+      <!--begin::Symbol-->
+      <div class="symbol symbol-35px me-2">
+        <img alt="Image - Default" class="imgThm lazy loaded" [src]="article.author.image" lazied="" alt="user">
+      </div>
+      <!--end::Symbol-->
+
+      <!--begin::Name-->
+      <div class="d-flex flex-column align-items-start justify-content-center">
+        <span class="text-gray-900 fs-7 fw-semibold lh-1 mb-2">{{ article.author.username }}</span>
+        <span class="text-muted fs-8 fw-semibold lh-1">{{ article.createdAt }}</span>
+      </div>
+      <!--end::Name-->
+    </div>
+    <!--end::Author-->
+
+    <!--begin::Info-->
+    <div class="d-flex align-items-center py-1">
+      <!--begin::Answers-->
+      <a [routerLink]="['/', article?.slug]"
+        class="btn btn-sm btn-outline btn-outline-dashed btn-outline-default px-4 me-2">
+        {{ article.view }} views
+      </a>
+      <!--end::Answers-->
+      <app-favorite-button [article]="article" (toggle)="onToggleFavorite($event)">
+        {{ article.favorited ? "Unfavorite" : "Favorite" }} Article
+        <span class="counter">({{ article.favoritesCount }})</span>
+      </app-favorite-button>
+      <!--begin::Tags-->
+      <!-- <a *ngFor="let tag of article.tagList; trackBy: trackByFn" [routerLink]="['/', article?.slug]" rel="tag"
+        title="{{ tag }}"[routerLink]="['/', article?.slug]" class="btn btn-sm btn-flex btn-light px-3" data-bs-toggle="tooltip">{{ tag }}
+      </a> -->
+      <!--end::Tags-->
+
+      <!--begin::Upvote-->
+      <!-- <a [routerLink]="['/', article?.slug]" class="btn btn-sm btn-flex btn-light px-3" data-bs-toggle="tooltip" title="Upvote this question"
+        data-bs-dismiss="click">
+        Chi tiết <i class="ki-duotone ki-black-right fs-3ms-2 me-0 fs-3"></i> </a> -->
+      <!--end::Upvote-->
+    </div>
+    <!--end::Info-->
+  </div>
+  <!--end::Foot-->
+</div>
+<!--end::Question-->
+
+<!--begin::Separator-->
+<div class="separator separator-dashed border-gray-300 my-8"></div>
+<!--end::Separator-->

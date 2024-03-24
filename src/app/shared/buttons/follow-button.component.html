@@ -1,10 +1,9 @@
-<button
-  class="btn btn-sm action-btn"
-  [ngClass]="{ 'disabled': isSubmitting,
-               'btn-outline-secondary': !profile.following,
-               'btn-secondary': profile.following }"
-  (click)="toggleFollowing()">
-  <i class="ion-plus-round"></i>
-  &nbsp;
-  {{ profile.following ? 'Unfollow' : 'Follow' }} {{ profile.username }}
-</button>
+<a class="btn btn-sm btn-light me-2" id="kt_user_follow_button">
+  <i class="ki-duotone ki-check fs-3 d-none"></i>
+  <!--begin::Indicator label-->
+  <span class="indicator-label" [ngClass]="{ 'disabled': isSubmitting,
+  'btn-outline-secondary': !profile.following,
+  'btn-secondary': profile.following }" (click)="toggleFollowing()">
+    {{ profile.following ? 'Unfollow' : 'Follow' }}
+  </span>
+  <!--end::Indicator label--> </a>

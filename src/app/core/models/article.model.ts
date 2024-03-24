@@ -15,4 +15,5 @@ export interface Article {
   view:number;
   timeRead:string;
   mucluc: string[];
+  status:string;
 }

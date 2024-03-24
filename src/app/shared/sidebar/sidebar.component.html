@@ -1,151 +1,198 @@
-<aside class="blogItm sidebar">
-    <div class="sideIn">
-      <div class="section" id="side-widget">
-        <div class="widget PopularPosts" data-version="2" id="PopularPosts00">
-          <h2 class="title">Bài viết vừa xem</h2>
-          <div class="itemPp">
-            <article class="itm mostP pTag" *ngIf="popularPostNew">
-              <div class="iThmb pThmb">
-                <a
-                title="{{ popularPostNew.title }}"
-                  class="thmb"
-                  [routerLink]="['/', popularPostNew?.slug]"
-                >
-                  <img
-                    alt="Image - Default"
-                    class="imgThm lazy loaded"
-                    [src]="popularPostNew.imageUrl"
-                    lazied=""
-                  />
-                </a>
-                <div class="iFxd">
-                  <div class="spnr">
-                    <svg class="line" viewBox="0 0 24 24">
-                      <path
-                        d="M4.16989 15.3L8.69989 19.83C10.5599 21.69 13.5799 21.69 15.4499 19.83L19.8399 15.44C21.6999 13.58 21.6999 10.56 19.8399 8.69005L15.2999 4.17005C14.3499 3.22005 13.0399 2.71005 11.6999 2.78005L6.69989 3.02005C4.69989 3.11005 3.10989 4.70005 3.00989 6.69005L2.76989 11.69C2.70989 13.04 3.21989 14.35 4.16989 15.3Z"
-                      ></path>
-                      <path
-                        d="M9.5 12C10.8807 12 12 10.8807 12 9.5C12 8.11929 10.8807 7 9.5 7C8.11929 7 7 8.11929 7 9.5C7 10.8807 8.11929 12 9.5 12Z"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div class="iInf pSml">
-                <div class="pLbls">
-                  <a
-                    *ngFor="
-                      let tag of popularPostNew.tagList;
-                      trackBy: trackByFn
-                    "
-                    [routerLink]="['/', popularPostNew?.slug]"
-                    rel="tag"
-                    title="{{ tag }}"
-                  >
-                  {{tag}}
-                  </a>
-                </div>
-              </div>
-              <div class="iCtnt">
-                <div class="iInr">
-                  <h3 class="iTtl aTtl">
-                    <a [routerLink]="['/', popularPostNew?.slug]">{{
-                      popularPostNew.title
-                    }}</a>
-                  </h3>
-                </div>
-              </div>
-            </article>
-            <div *ngFor="let item of popularPost.slice(1)">
-              <article class="itm">
-                <div class="iInf pSml">
-                  <div class="pLbls">
-                    <a
-                      *ngFor="let tag of item.tagList; trackBy: trackByFn"
-                      
-                      [attr.data-text]="tag"
-                      rel="tag"
-                    >
-                    </a>
-                  </div>
-                </div>
-                <div class="iCtnt">
-                  <div class="iInr">
-                    <h3 class="iTtl aTtl">
-                      <a [routerLink]="['/', item?.slug]">{{
-                        item.title
-                      }}</a>
-                    </h3>
-                  </div>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-        
-        <div class="widget Label" data-version="2" id="Label00">
-          <h3 class="title">Tags</h3>
-          <div class="wL pSml bg cl">
-            <div class="lbSz s-1" *ngFor="let item of tags1">
-              <a
-                aria-label="Disqus"
-                class="lbN"
-              >
-                <span class="lbT">{{item}}</span>
-                <span class="lbC" data-text="(2)"></span>
-              </a>
-            </div>
-            <div class="lbSh">
-              <input class="lbIn hidden" id="lbAl-1" type="checkbox" />
-              
-              <div class="lbAl" >
-                <ng-container *ngFor="let item of tags2">
-                <div class="lbSz s-1">
-                  <a
-                    aria-label="Product"
-                    class="lbN"
-                  >
-                    <span class="lbT">{{item}}</span>
-                    <span class="lbC" data-text="(1)"></span>
-                  </a>
-                </div>
-              </ng-container>
-              </div>
-              <label *ngIf="+count >0"
-                aria-label="Show labels"
-                class="lbM"
-                data-hide="Show less"
-                data-show="Show more"
-                [attr.data-text]="count"
-                for="lbAl-1"
-              ></label>
-            </div>
-          </div>
-        </div>
+<div class="sidebar p-5 px-lg-0 py-lg-11" data-kt-drawer="true" data-kt-drawer-name="sidebar"
+  data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="275px"
+  data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_sidebar_toggle">
+  <div class="flex-column flex-lg-row-auto w-100 w-xl-300px mb-10">
+    <!--begin::Search blog-->
+    <div class="mb-16">
+      <h4 class="text-gray-900 mb-7">Search Blog</h4>
 
-
-        <div class="widget PopularPosts" data-version="2" id="PopularPosts00" *ngIf="mucluc">
-          <h2 class="title">Mục lục</h2>
-          <div class="itemPp">
-            <div *ngFor="let item of mucluc">
-              <article >
-                <div >
-                  <div >
-                    <h3 class="iTtl aTtl">
-                     {{item}} 
-                    </h3>
-                  </div>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
+      <!--begin::Input group-->
+      <div class="position-relative">
+        <i class="ki-duotone ki-magnifier fs-3 text-gray-500 position-absolute top-50 translate-middle ms-6"><span
+            class="path1"></span><span class="path2"></span></i>
+        <input type="text" class="form-control form-control-solid ps-10" name="search" value="" placeholder="Search">
       </div>
-      <!--[ Sidebar sticky ]-->
-      <!-- <div class="sideSticky section" id="side-sticky">
-        <div class="widget HTML" data-version="2" id="HTML95">
-          <div class="adB" data-text="Ads go here"></div>
-        </div>
-      </div> -->
+      <!--end::Input group-->
     </div>
-  </aside>
+    <!--end::Search blog-->
+
+    <div class="mb-16">
+
+
+      <!--begin::Card-->
+      <div>
+        <!--begin::Card body-->
+        <div class="card-body d-flex flex-center flex-column pt-12 p-9">
+          <!--begin::Avatar-->
+          <div class="symbol symbol-65px symbol-circle mb-5">
+            <img src="{{article.author.image}}" alt="image">
+            <div
+              class="bg-success position-absolute border border-4 border-body h-15px w-15px rounded-circle translate-middle start-100 top-100 ms-n3 mt-n3">
+            </div>
+          </div>
+          <!--end::Avatar-->
+
+          <!--begin::Name-->
+          <a [routerLink]="['/profile', article.author.username]"
+            class="fs-4 text-gray-800 text-hover-primary fw-bold mb-0"> {{article.author.username}}</a>
+          <!--end::Name-->
+
+          <!--begin::Position-->
+          <div class="fw-semibold text-gray-500 mb-6">{{article.author.bio}}</div>
+          <!--end::Position-->
+
+          <!--begin::Info-->
+          <div class="d-flex flex-center flex-wrap" *ngIf="canModify==false">
+            <!--begin::Stats-->
+
+            <app-follow-button [profile]="article.author" (toggle)="onToggleFollowing($event)"></app-follow-button>
+            <app-favorite-button [article]="article" (toggle)="onToggleFavorite($event)">
+              {{ article.favorited ? "Bỏ thích" : "Thích" }}
+              <span class="counter"></span>
+            </app-favorite-button>
+            <!--end::Stats-->
+          </div>
+          <div class="d-flex flex-center flex-wrap" *ngIf="canModify==true" >
+            <a class="btn btn-sm btn-light me-2" id="kt_user_follow_button" [routerLink]="['/editor', article.slug]">
+              <i class="ki-duotone ki-check fs-3 d-none"></i>
+              <!--begin::Indicator label-->
+              <span class="indicator-label">
+                Chỉnh sửa
+              </span>
+              <!--end::Indicator label--> </a>
+              <a class="btn btn-sm btn-light me-2" id="kt_user_follow_button">
+                <i class="ki-duotone ki-check fs-3 d-none"></i>
+                <!--begin::Indicator label-->
+                <span class="indicator-label" (click)="deleteArticle()"  [ngClass]="{ disabled: isDeleting }">
+                  Xóa
+                </span>
+                <!--end::Indicator label--> </a>
+          </div>
+
+
+          <!--end::Info-->
+        </div>
+        <!--end::Card body-->
+      </div>
+      <!--end::Card-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!--begin::Catigories-->
+      <div class="mb-16">
+        <div class="mb-16">
+
+          <!--begin::Item-->
+          <div class="d-flex flex-stack fw-semibold fs-5 text-muted mb-4">
+            <!--begin::Text-->
+            <p class="text-muted text-primary pe-2">
+              Lượt xem </p>
+            <!--end::Text-->
+            <!--begin::Number-->
+            <div class="m-0">
+              {{article.view}} </div>
+            <!--end::Number-->
+          </div>
+          <!--end::Item-->
+          <!--begin::Item-->
+          <div class="d-flex flex-stack fw-semibold fs-5 text-muted mb-4">
+            <!--begin::Text-->
+            <p class="text-muted text-primary pe-2">
+              Bình luận </p>
+            <!--end::Text-->
+            <!--begin::Number-->
+            <div class="m-0">
+              {{comments}} </div>
+            <!--end::Number-->
+          </div>
+          <!--end::Item-->
+          <!--begin::Item-->
+          <div class="d-flex flex-stack fw-semibold fs-5 text-muted mb-4">
+            <!--begin::Text-->
+            <p class="text-muted text-primary pe-2">
+              Lượt thích </p>
+            <!--end::Text-->
+            <!--begin::Number-->
+            <div class="m-0">
+              {{article.favoritesCount}} </div>
+            <!--end::Number-->
+          </div>
+          <!--end::Item-->
+
+        </div>
+        <!--end::Catigories-->
+        <h4 class="text-gray-900 mb-7">Tags</h4>
+        <!--begin::Item-->
+        <div class="d-flex flex-stack fw-semibold fs-5 text-muted mb-4">
+          <!--begin::Text-->
+          <a *ngFor="
+              let tag of popularPostNew.tagList;
+            " [routerLink]="['/', popularPostNew?.slug]" rel="tag" title="{{ tag }}"
+            class="text-muted text-hover-primary pe-2">
+            {{tag}}
+          </a>
+          <!--end::Text-->
+          <!--end::Item-->
+        </div>
+        <!--begin::Catigories-->
+        <div class="mb-16">
+          <h4 class="text-gray-900 mb-7">Chủ đề</h4>
+
+          <!--begin::Item-->
+          <div class="d-flex flex-stack fw-semibold fs-5 text-muted mb-4">
+            <!--begin::Text-->
+            <a href="#" class="text-muted text-hover-primary pe-2">
+              SaaS Solutions </a>
+            <!--end::Text-->
+
+            <!--begin::Number-->
+            <div class="m-0">
+              24 </div>
+            <!--end::Number-->
+          </div>
+          <!--end::Item-->
+        </div>
+        <!--end::Catigories-->
+
+
+        <!--begin::Recent posts-->
+        <div class="m-0">
+          <h4 class="text-gray-900 mb-7">Bài viết liên quan</h4>
+
+          <!--begin::Item-->
+          <div class="d-flex flex-stack mb-7">
+            <!--begin::Symbol-->
+
+            <div class="symbol symbol-60px symbol-2by3 me-4">
+              <div class="symbol-label"
+                style="background-image: url('/metronic8/demo5/assets/media/stock/600x400/img-1.jpg')"></div>
+            </div>
+            <!--end::Symbol-->
+
+            <!--begin::Title-->
+            <div class="m-0">
+              <a href="#" class="text-gray-900 fw-bold text-hover-primary fs-6">About Bootstrap Admin</a>
+
+              <span class="text-gray-600 fw-semibold d-block pt-1 fs-7">We’ve been a focused on making a the
+                sky</span>
+            </div>
+            <!--end::Title-->
+          </div>
+          <!--end::Item-->
+        </div>
+        <!--end::Recent posts-->
+      </div>
+    </div>
+  </div>
+</div>

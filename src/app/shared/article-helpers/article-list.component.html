@@ -1,42 +1,45 @@
 <div class="app-article-preview" [hidden]="!loading">
-  <!-- <app-loading></app-loading> -->
-  Loading...
+  <app-loading></app-loading>
+  <!-- Loading... -->
 </div>
 
 <div class="app-article-preview" [hidden]="loading || results.length">
   No articles are here... yet.
 </div>
+<!--begin:Search form-->
+<form id="kt_devs_search_form" class="form mb-6">
+  <div class="d-flex">
+    <!--begin::Form control-->
+    <input type="text" class="form-control flex-grow-1 me-5" placeholder="Tìm kiếm (Enter)" name="query" value=""
+      required="required" autocomplete="off" id="searchIn" [(ngModel)]="inputValue" />
+    <!--end::Form control-->
 
-<div class="widget Blog" data-version="2" id="Blog1">
-  <div class="blogTtl hm">
-    <h3 class="title">Mới nhất</h3>
+    <!--begin::Submit-->
+    <button type="submit" id="kt_devs_ask_submit" class="btn btn-primary flex-shrink-0"
+      (click)="onEnterKey(inputValue)">
+      Tìm kiếm
+    </button>
+    <!--begin::Submit-->
   </div>
-  <div class="blogPts">
-    <app-article-preview
-      *ngFor="let article of results; trackBy: trackByFn"
-      [article]="article"
-    >
-    </app-article-preview>
+</form>
+<!--end:Search form-->
+<!--begin:Search info-->
+<div class="fw-semibold fw-base text-gray-600">{{ results.length  }} kết quả được tìm thấy.</div>
+<!--end:Search info-->
+<!--begin::Separator-->
+<div class="separator separator-dashed border-gray-300 my-6"></div>
+<!--end::Separator-->
+<!--begin::Questions-->
+<div class="mb-10">
+  <app-article-preview *ngFor="let article of results; trackBy: trackByFn" [article]="article">
+  </app-article-preview>
+</div>
+<!--begin::Pagination-->
+<nav [hidden]="loading || totalPages.length <= 1">
+  <div class="d-flex flex-center mb-0"  [ngClass]="{'active': pageNumber === currentPage}"
+  *ngFor="let pageNumber of totalPages; trackBy: trackByFn"
+  (click)="setPageTo(pageNumber)">
+    <a  class="btn btn-icon btn-light btn-active-light-primary h-30px w-30px fw-semibold fs-6 mx-2 ">{{ pageNumber }}</a>
   </div>
-  <!-- <div class="blogPg" id="blogPager" [hidden]="loading || totalPages.length <= 1">
-    <a
-    [ngClass]="{ active: pageNumber === currentPage }"
-    *ngFor="let pageNumber of totalPages; trackBy: trackByFn"
-      aria-label="Load more posts"
-      class="jsLd"
-      data-text="Load more posts"
-      (click)="setPageTo(pageNumber)"></a>
-  </div> -->
-</div>
-
-<div class="blogPg" id="blogPager"  [hidden]="loading || totalPages.length <= 1">
-  <a
-    aria-label="Load more posts"
-    class="jsLd"
-    data-text="Load more posts"
-    *ngIf="showLoadMoreButton"
-    (click)="loadMore()"
-  ></a>
-</div>
-
-
+</nav>
+<!--end::Questions-->

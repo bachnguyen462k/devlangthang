@@ -26,20 +26,18 @@ export class ArticleComponent implements OnInit {
   commentControl = new FormControl();
   commentFormErrors = {};
   isSubmitting = false;
-  isDeleting = false;
   createTime: string='';
   articleId: string;
   urlEncodedLink: string;
   headings: string[] = [];
   constructor(
     private route: ActivatedRoute,
-    private articlesService: ArticlesService,
+ 
     private commentsService: CommentsService,
-    private router: Router,
     private userService: UserService,
     private cd: ChangeDetectorRef,
     private popularPostService: PopularPostService,
-    private renderer: Renderer2
+
   ) { }
 
   ngOnInit() {
@@ -110,16 +108,7 @@ export class ArticleComponent implements OnInit {
     this.article.author.following = following;
   }
 
-  deleteArticle() {
-    this.isDeleting = true;
 
-    this.articlesService.destroy(this.article.slug)
-      .subscribe(
-        success => {
-          this.router.navigateByUrl('/');
-        }
-      );
-  }
 
   populateComments() {
     this.commentsService.getAll(this.article.slug)

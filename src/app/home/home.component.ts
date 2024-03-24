@@ -10,6 +10,7 @@ import { Article, ArticleListConfig, ArticlesService, PopularPostService, TagsSe
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
+
   constructor(
     private router: Router,
     private tagsService: TagsService,
@@ -68,4 +69,5 @@ export class HomeComponent implements OnInit {
     // Otherwise, set the list object
     this.listConfig = {type: type, filters: filters};
   }
+
 }

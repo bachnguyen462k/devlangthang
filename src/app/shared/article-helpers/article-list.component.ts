@@ -8,19 +8,19 @@ import { Article, ArticleListConfig, ArticlesService } from '../../core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ArticleListComponent {
+  inputValue: string='';
   constructor (
     private articlesService: ArticlesService,
     private cd: ChangeDetectorRef,
     
   ) {}
-
   @Input() limit: number;
   @Input()
   set config(config: ArticleListConfig) {
     if (config) {
       this.query = config;
       this.currentPage = 1;
-      this.runQuery();
+      this.runQuery(this.inputValue);
     }
   }
   @Input() title: string;
@@ -42,7 +42,7 @@ export class ArticleListComponent {
 
   setPageTo(pageNumber) {
     this.currentPage = pageNumber;
-    this.runQuery();
+    this.runQuery(this.inputValue);
     this.updateDisplayedPages();
   }
 
@@ -50,8 +50,7 @@ export class ArticleListComponent {
     return index;
   }
 
-  runQuery() {
-    
+  runQuery(inputValue :string) {
     this.loading = true;
     this.results = [];
 
@@ -59,6 +58,7 @@ export class ArticleListComponent {
     if (this.limit) {
       this.query.filters.limit = this.limit;
       this.query.filters.offset =  (this.limit * (this.currentPage - 1));
+      this.query.filters.search=this.inputValue;
     }
 
     this.articlesService.query(this.query)
@@ -76,12 +76,14 @@ export class ArticleListComponent {
   }
   loadMore() {
     this.currentPage++;
-    this.runQuery();
+    this.runQuery(this.inputValue);
   }
   
   get showLoadMoreButton() {
     return this.currentPage < this.totalPages.length;
   }
   
-  
+  onEnterKey(event: any) {
+    this.runQuery(this.inputValue);
+  }
 }
