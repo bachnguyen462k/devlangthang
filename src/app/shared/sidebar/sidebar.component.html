@@ -137,7 +137,7 @@
         <div class="d-flex flex-stack fw-semibold fs-5 text-muted mb-4">
           <!--begin::Text-->
           <a *ngFor="
-              let tag of popularPostNew.tagList;
+              let tag of article.tagList;
             " [routerLink]="['/', popularPostNew?.slug]" rel="tag" title="{{ tag }}"
             class="text-muted text-hover-primary pe-2">
             {{tag}}
@@ -171,21 +171,22 @@
           <h4 class="text-gray-900 mb-7">Bài viết liên quan</h4>
 
           <!--begin::Item-->
-          <div class="d-flex flex-stack mb-7">
+          <div class="d-flex flex-stack mb-7" *ngFor="
+          let results of results">
             <!--begin::Symbol-->
 
             <div class="symbol symbol-60px symbol-2by3 me-4">
-              <div class="symbol-label"
-                style="background-image: url('/metronic8/demo5/assets/media/stock/600x400/img-1.jpg')"></div>
+              <!-- <div class="symbol-label"
+                style="background-image: url('/metronic8/demo5/assets/media/stock/600x400/img-1.jpg')"></div> -->
+                <img src="{{results.image}}" alt="image"  class="symbol-label">
             </div>
             <!--end::Symbol-->
 
             <!--begin::Title-->
-            <div class="m-0">
-              <a href="#" class="text-gray-900 fw-bold text-hover-primary fs-6">About Bootstrap Admin</a>
+            <div class="m-0" >
+              <a [routerLink]="['/', results?.slug]" title="{{ results.title }}" class="text-gray-900 fw-bold text-hover-primary fs-6">{{results.title}}</a>
 
-              <span class="text-gray-600 fw-semibold d-block pt-1 fs-7">We’ve been a focused on making a the
-                sky</span>
+              <!-- <span class="text-gray-600 fw-semibold d-block pt-1 fs-7">{{results.description}}</span> -->
             </div>
             <!--end::Title-->
           </div>
